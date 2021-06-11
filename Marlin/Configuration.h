@@ -131,7 +131,7 @@
 // The following define selects which electronics board you have.
 // Please choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_RAMPS_14_EFB
+  #define MOTHERBOARD BOARD_MKS_GEN_13
 #endif
 
 // Optional custom name for your RepStrap or other custom machine
@@ -224,7 +224,7 @@
 // Offset of the extruders (uncomment if using more than one and relying on firmware to position when changing).
 // The offset has to be X=0, Y=0 for the extruder 0 hotend (default extruder).
 // For the other hotends it is their distance from the extruder 0 hotend.
-#define HOTEND_OFFSET_X {0.0, -35} // (in mm) for each extruder, offset of the hotend on the X axis
+#define HOTEND_OFFSET_X {0, -35} // (in mm) for each extruder, offset of the hotend on the X axis
 #define HOTEND_OFFSET_Y {0.0, 0.00}  // (in mm) for each extruder, offset of the hotend on the Y axis
 
 // @section machine
@@ -607,6 +607,8 @@
  */
 #define DISTINCT_E_FACTORS
 
+//Hictop M92 E Factor - Left Extruder (Teva clone extruder) - E399.65, Right Extruder (E3D Genuine extruder) - 427.63 - 3.17.19
+
 /**
  * Default Axis Steps Per Unit (steps/mm)
  * Override with M92
@@ -823,7 +825,7 @@
  */
 #define Z_CLEARANCE_DEPLOY_PROBE   5 // Z Clearance for Deploy/Stow
 #define Z_CLEARANCE_BETWEEN_PROBES  3 // Z Clearance between probe points
-#define Z_CLEARANCE_MULTI_PROBE     5 // Z Clearance between multiple probes
+#define Z_CLEARANCE_MULTI_PROBE     4 // Z Clearance between multiple probes
 //#define Z_AFTER_PROBING           5 // Z position after probing is done
 
 #define Z_PROBE_LOW_POINT          -2 // Farthest distance below the trigger-point to go before stopping
@@ -877,7 +879,7 @@
 
 //#define UNKNOWN_Z_NO_RAISE // Don't raise Z (lower the bed) if Z is "unknown." For beds that fall when Z is powered off.
 
-//#define Z_HOMING_HEIGHT 4  // (in mm) Minimal z height before homing (G28) for Z clearance above the bed, clamps, ...
+#define Z_HOMING_HEIGHT 4  // (in mm) Minimal z height before homing (G28) for Z clearance above the bed, clamps, ...
                              // Be sure you have this distance over your Z_MAX_POS in case.
 
 // Direction of endstops when homing; 1=MAX, -1=MIN
@@ -889,11 +891,11 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 215
+#define X_BED_SIZE 220
 #define Y_BED_SIZE 275
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS 0
+#define X_MIN_POS -15
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
@@ -1035,10 +1037,10 @@
 
   // Set the boundaries for probing (where the probe can reach).
   
-  #define LEFT_PROBE_BED_POSITION 20
-  #define RIGHT_PROBE_BED_POSITION 200
-  #define FRONT_PROBE_BED_POSITION 20//Should be y min position + y probe offset as a minimum -> 0 + 70 (real offset from nozzle) = 70 + 10 (for margin) = 80 (update to use vars) -BM
-  #define BACK_PROBE_BED_POSITION 265
+  #define LEFT_PROBE_BED_POSITION 17
+  #define RIGHT_PROBE_BED_POSITION 190
+  #define FRONT_PROBE_BED_POSITION 15//Should be y min position + y probe offset as a minimum -> 0 + 70 (real offset from nozzle) = 70 + 10 (for margin) = 80 (update to use vars) -BM
+  #define BACK_PROBE_BED_POSITION 247 //Its validated by this --> (min(Y_MAX_BED - (MESH_INSET), Y_MAX_POS + Y_PROBE_OFFSET_FROM_EXTRUDER))
   //#define LEFT_PROBE_BED_POSITION MIN_PROBE_EDGE
   //#define RIGHT_PROBE_BED_POSITION (X_BED_SIZE - MIN_PROBE_EDGE)
   //#define FRONT_PROBE_BED_POSITION 2
@@ -1106,7 +1108,7 @@
   #define PROBE_PT_1_Y 265
   #define PROBE_PT_2_X 31
   #define PROBE_PT_2_Y 17
-  #define PROBE_PT_3_X 180
+  #define PROBE_PT_3_X 175
   #define PROBE_PT_3_Y 17
 #endif
 
